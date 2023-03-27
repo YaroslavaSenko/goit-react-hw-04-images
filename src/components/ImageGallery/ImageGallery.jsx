@@ -1,32 +1,28 @@
+import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
+import s from './ImageGallery.module.css';
 import PropTypes from 'prop-types';
-import { ImgGallery } from './ImageGallery.styled';
-import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 
-export const ImageGallery = ({ images, onClickImage }) => {
+export default function ImageGallery({ images, openModal }) {
   return (
-    <ImgGallery>
-      {images.map(({ id, webformatURL, tags, largeImageURL }) => (
+    <ul className={s.ImageGallery}>
+      {images.map(({ id, webformatURL }, index) => (
         <ImageGalleryItem
           key={id}
           webformatURL={webformatURL}
-          tags={tags}
-          largeImageURL={largeImageURL}
-          onClickImage={onClickImage}
+          index={index}
+          openModal={openModal}
         />
       ))}
-    </ImgGallery>
+    </ul>
   );
-};
+}
 
 ImageGallery.propTypes = {
+  openModal: PropTypes.func.isRequired,
   images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
-      tags: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  onClickImage: PropTypes.func.isRequired,
+    })
+  ),
 };
-
-export default ImageGallery

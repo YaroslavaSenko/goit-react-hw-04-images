@@ -45,7 +45,7 @@ export default function App() {
 
   const onSubmit = newSearchData => {
     if (newSearchData.trim() === '') {
-      return toast.error('Enter the meaning for search');
+      return toast.error('Enter something for search');
     } else if (newSearchData === searchData) {
       return;
     }

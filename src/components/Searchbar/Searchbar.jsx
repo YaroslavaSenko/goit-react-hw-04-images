@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 export default function Searchbar({ onSubmit }) {
   const [searchData, setSearchData] = useState('');
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     onSubmit(searchData);
+    setSearchData('');
+    event.currentTarget.reset();
   };
 
-  const handleChange = evt => {
-    const { value } = evt.target;
-    setSearchData(value);
+  const handleChange = event => {
+    setSearchData(event.currentTarget.value.toLowerCase());
   };
 
   return (
